@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educator Portal - Sign Up</title>
+    <link rel="stylesheet" href="regstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form-section">
+            <form class="auth-form" id="signupForm">
+                <h2>SIGN UP</h2>
+                <p class="subtitle">Enter your account details</p>
+
+                <div class="form-group">
+                    <label for="signup-email">Email Address / Username</label>
+                    <input type="text" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="signup-password" required>
+                        <span class="toggle-password" data-target="signup-password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="signup-confirm-password" required>
+                        <span class="toggle-password" data-target="signup-confirm-password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="auth-button">SIGN UP</button>
+                <p id="signup-message" class="hidden"></p>
+                <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+            </form>
+        </div>
+        <div class="auth-welcome-section">
+            <div class="role-selector">
+                <span class="role-item">Student</span>
+                <span class="role-item active">Educator</span>
+            </div>
+            <h1>Welcome to <br> Educator Portal</h1>
+            <div class="illustration">
+                <img src="/images/profIMG.png" alt="Educator Illustration">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            const messageElement = document.getElementById('signup-message');
+
+            if (password !== confirmPassword) {
+                messageElement.textContent = 'Passwords do not match!';
+                messageElement.classList.remove('hidden');
+                messageElement.style.color = 'red';
+                return;
+            }
+
+            // Save user credentials (for demonstration purposes, in a real app, hash passwords!)
+            // For simplicity, we'll store a single user. In a real app, you'd manage multiple users.
+            localStorage.setItem('registeredEmail', email);
+            localStorage.setItem('registeredPassword', password);
+
+            messageElement.textContent = 'Account created successfully! Redirecting to login...';
+            messageElement.classList.remove('hidden');
+            messageElement.style.color = '#FFD700'; // Gold color for success
+            
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
+
+        // Password toggle functionality
+        document.querySelectorAll('.toggle-password').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const passwordInput = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

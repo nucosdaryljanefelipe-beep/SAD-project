@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Class</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/qculogo.png" alt="School Logo">
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="create_class.html" class="nav-item active"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+                    <li><a href="classes_overview.html" class="nav-item"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+                    <li><a href="Announcement.html" class="nav-item "><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+                    <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="login.html" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Create Class</h1>
+                <div class="user-profile">
+    <img src="/images/user.png" alt="Class Members" id="openMembersModal" class="clickable-logo">
+</div>
+            </header>
+            <section class="create-class-form">
+                <form id="createClassForm">
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject" placeholder="Enter subject name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="section">Section:</label>
+                        <input type="text" id="section" name="section" placeholder="Enter section" required>
+                    </div>
+                    <div class="form-group add-background">
+                        <label for="background-image">Add Background Image *(optional)*</label>
+                        <input type="file" id="background-image" name="background-image" accept="image/*">
+                        <div class="upload-icon">+</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="time">Time:</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="day">Day:</label>
+                            <select id="day" name="day" required>
+                                <option value="">Select Day</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="create-button">CREATE</button>
+                    <!-- "Done!" message is initially hidden by the 'hidden' class in CSS -->
+                    <p id="confirmationMessage" class="hidden">Done!</p>
+                </form>
+            </section>
+        </main>
+    </div>
+
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('createClassForm');
+    const confirmationMessage = document.getElementById('confirmationMessage');
+
+    if (!form) {
+        console.error("Form with id 'createClassForm' not found!");
+        return;
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const subject = document.getElementById('subject')?.value.trim();
+        const section = document.getElementById('section')?.value.trim();
+        const time = document.getElementById('time')?.value.trim();
+        const day = document.getElementById('day')?.value.trim();
+
+        // Simple validation
+        if (!subject || !section || !time || !day) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        const newClass = {
+            subject,
+            section,
+            time,
+            day,
+            representative: "User Created" // Placeholder for created class
+        };
+
+        // Get existing classes from localStorage or initialize an empty array
+        let classes = JSON.parse(localStorage.getItem('userClasses')) || [];
+        classes.push(newClass);
+
+        // Save updated classes array back to localStorage
+        localStorage.setItem('userClasses', JSON.stringify(classes));
+
+        // Show confirmation message
+        if (confirmationMessage) {
+            confirmationMessage.classList.remove('hidden');
+            confirmationMessage.classList.add('visible');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                confirmationMessage.classList.remove('visible');
+                confirmationMessage.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Clear the form
+        form.reset();
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade Overview</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/qculogo.png" alt="School Logo">
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="create_class.html" class="nav-item"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+                    <li><a href="classes_overview.html" class="nav-item active"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+                    <li><a href="Announcement.html" class="nav-item"><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+                    <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="login.html" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+            </div>
+        </aside>
+      <main class="main-content">
+
+  <div class="header-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #FFE6A4; border-bottom: 1px solid #ffcc66; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+    <h1 class="page-title" style="margin: 0; color: #8B0000; font-size: 2em; font-weight: 700;">Grade Page</h1>
+    <div class="grades-header">
+      <img class="avatar" src="/images/user.png" alt="User Avatar" 
+           style="width:55px; height:55px; border-radius:50%; border:3px solid #8B0000; box-shadow:0 2px 5px rgba(0,0,0,0.2); cursor:pointer; transition:0.3s;"
+           onmouseover="this.style.transform='translateY(-3px) scale(1.05)'; this.style.boxShadow='0 6px 15px rgba(139,0,0,0.3)'; this.style.borderColor='#FFD700';"
+           onmouseout="this.style.transform=''; this.style.boxShadow='0 2px 5px rgba(0,0,0,0.2)'; this.style.borderColor='#8B0000';">
+    </div>
+  </div>
+
+  <div class="courses-grid">
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-1D</div>
+      <div class="course-code">CC101</div>
+      <div class="course-time">1:00PM - 5:00PM</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-2D</div>
+      <div class="course-code">NET102</div>
+      <div class="course-time">1:00PM - 4:00PM</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-3D</div>
+      <div class="course-code">PE6</div>
+      <div class="course-time">11:30AM - 1:30PM</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-4D</div>
+      <div class="course-code">GEE1</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-5D</div>
+      <div class="course-code">GEE2</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+    <div class="course-card" onclick="window.location.href='grades_detail.html'">
+      <div class="course-title">SBIT-6D</div>
+      <div class="course-code">NSTP1</div>
+      <div class="course-time">9:00AM - 11:00AM</div>
+      <button class="arrow-btn">▼</button>
+    </div>
+  </div>
+</main>

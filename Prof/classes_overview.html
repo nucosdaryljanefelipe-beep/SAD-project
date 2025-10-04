@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/qculogo.png" alt="School Logo">
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="create_class.html" class="nav-item"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+                    <li><a href="classes_overview.html" class="nav-item active"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+                    <li><a href="Announcement.html" class="nav-item"><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+                    <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="#" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="header">
+                <h1>Classes</h1>
+                 <div class="user-profile">
+   <a href="class_members.html">
+  <img src="/images/user.png" alt="Class Members" id="openMembersModal" class="clickable-logo">
+</a>
+
+</div>
+            
+
+            </header>
+            <section class="classes-grid" id="classesGrid">
+                <p id="noClassesMessage" class="hidden">No classes created yet. Go to 'Create' to add one!</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const classesGrid = document.getElementById('classesGrid');
+        const noClassesMessage = document.getElementById('noClassesMessage');
+        let userClasses = JSON.parse(localStorage.getItem('userClasses')) || [];
+
+        function renderClasses() {
+            classesGrid.innerHTML = '';
+            if (userClasses.length === 0) {
+                noClassesMessage.classList.remove('hidden');
+                return;
+            } else {
+                noClassesMessage.classList.add('hidden');
+            }
+
+            userClasses.forEach((classData, index) => {
+                const classCard = document.createElement('div');
+                classCard.classList.add('class-card');
+                classCard.dataset.classSubject = classData.subject;
+
+                classCard.innerHTML = `
+                    <h2>${classData.subject}</h2>
+                    <p class="schedule">SBT | ${classData.time} | ${classData.day}</p>
+                    <p class="representative">Class Rep. ${classData.representative}</p>
+                    <button class="delete-class-btn"><i class="fas fa-trash-alt"></i></button>
+                `;
+
+                // Open class details on click (except delete button)
+                classCard.addEventListener('click', function(e) {
+                    if (!e.target.closest('.delete-class-btn')) {
+                        const subject = this.dataset.classSubject;
+                        window.location.href = `class_details.html?subject=${encodeURIComponent(subject)}`;
+                    }
+                });
+
+                // Delete class button
+                classCard.querySelector('.delete-class-btn').addEventListener('click', function(e) {
+                    e.stopPropagation(); // prevent opening details
+                    if (confirm(`Are you sure you want to delete "${classData.subject}"?`)) {
+                        userClasses.splice(index, 1);
+                        localStorage.setItem('userClasses', JSON.stringify(userClasses));
+                        renderClasses();
+                    }
+                });
+
+                classesGrid.appendChild(classCard);
+            });
+        }
+
+        renderClasses();
+    });
+</script>
+
+</body>
+</html>

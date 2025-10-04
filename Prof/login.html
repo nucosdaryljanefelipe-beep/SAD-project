@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educator Portal - Login</title>
+    <link rel="stylesheet" href="regstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form-section">
+            <form class="auth-form" id="loginForm">
+                <h2>LOG IN</h2>
+                <p class="subtitle">Enter your account details</p>
+
+                <div class="form-group">
+                    <label for="login-email">Email Address / Username</label>
+                    <input type="text" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="login-password" required>
+                        <span class="toggle-password" data-target="login-password">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                    <a href="forgot_password.html" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="auth-button">Log in</button>
+                <p id="login-message" class="hidden"></p>
+                <p class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></p>
+            </form>
+        </div>
+        <div class="auth-welcome-section">
+            <div class="role-selector">
+                <span class="role-item">Student</span>
+                <span class="role-item active">Educator</span>
+            </div>
+            <h1>Welcome to <br> Educator Portal</h1>
+            <div class="illustration">
+                <img src="/images/progIMG.png" alt="Educator Illustration">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const messageElement = document.getElementById('login-message');
+
+            const storedEmail = localStorage.getItem('registeredEmail');
+            const storedPassword = localStorage.getItem('registeredPassword');
+
+            if (email === storedEmail && password === storedPassword) {
+                messageElement.textContent = 'Login successful! Redirecting...';
+                messageElement.classList.remove('hidden');
+                messageElement.style.color = '#FFD700'; // Gold color for success
+                
+                // Redirect to dashboard or another protected page
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html'; // Or your intended dashboard
+                }, 1500);
+
+            } else {
+                messageElement.textContent = 'Invalid email or password.';
+                messageElement.classList.remove('hidden');
+                messageElement.style.color = 'red';
+            }
+        });
+
+        // Password toggle functionality
+        document.querySelectorAll('.toggle-password').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const passwordInput = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

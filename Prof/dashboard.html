@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/qculogo.png" alt="University Logo">
+            </div>
+            <nav class="navigation">
+                <ul>
+                    <li>
+                        <a href="dashboard.html" class="nav-item">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="create_class.html" class="nav-item">
+                            <span class="icon"><i class="fas fa-plus"></i></span>
+                            Create
+                        </a>
+                    </li>
+                    <li>
+                        <a href="classes_overview.html" class="nav-item">
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                            Class
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Announcement.html" class="nav-item">
+                            <span class="icon"><i class="fas fa-bullhorn"></i></span>
+                            Announcement
+                        </a>
+                    <li>
+                        <a href="grades_overview.html" class="nav-item">
+                            <span class="icon"><i class="fas fa-graduation-cap"></i></span>
+                            Grades
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="login.html" class="nav-item">
+                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                    Log Out
+                </a>
+            </div>
+        </aside>
+        <main class="main">
+            <h1 class="greeting">Good Day, <span id="teacherName">Teacher!</span></h1>
+            <div class="schedule-card">
+                <div class="dropdown-header" id="dropdownHeader">
+                    <span id="dropdownLabel">Today Class</span> <span class="dropdown-arrow">&#9660;</span>
+                </div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                </div>
+                <div class="dropdown-content" id="scheduleList">
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="func.js"></script>
+</body>
+</html>

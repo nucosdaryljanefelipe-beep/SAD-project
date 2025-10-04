@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grades Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="/images/qculogo.png" alt="School Logo">
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+          <li><a href="create_class.html" class="nav-item"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+          <li><a href="classes_overview.html" class="nav-item active"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+          <li><a href="Announcement.html" class="nav-item"><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+          <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+        </ul>
+      </nav>
+      <div class="logout">
+        <a href="login.html" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+      </div>
+    </aside>
+
+    <main>
+
+      <h1 class="page-title" style="margin-left: 40px; margin-top: 20px;">Grades Page</h1>
+      <h2 style="margin-left: 40px; margin-top: 10px; color:#d22d2d;">SBIT-1D</h2>
+
+      <!-- Back Button -->
+      <button class="back-btn" onclick="window.location.href='grades_overview.html'" style="margin-left: 40px; margin-top: 15px;">
+        ← Back
+      </button>
+
+      <!-- Grades Table nakacentered -->
+<div class="grades-table" 
+     style="width: 80%; margin: 30px auto; text-align: center;">
+  <div class="grades-table-header">
+    <div>Student Number</div>
+    <div>Project</div>
+    <div>Exam</div>
+    <div>Assignment</div>
+    <div>Quiz</div>
+    <div>Attendance</div>
+    <div>GPA</div>
+  </div>
+  <div class="grades-table-row">
+    <input type="text" placeholder="123456" />
+    <input type="text" placeholder="90" />
+    <input type="text" placeholder="85" />
+    <input type="text" placeholder="88" />
+    <input type="text" placeholder="92" />
+    <input type="text" placeholder="100%" />
+    <input type="text" placeholder="4.0" />
+  </div>
+</div>
+</body>
+</html>

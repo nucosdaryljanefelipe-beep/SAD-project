@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="classDetailsTitle">Class Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/qculogo.png" alt="School Logo">
+            </div>
+            <nav class="navigation">
+                <ul> <!--Slide animation navigation bar-->
+                    <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="create_class.html" class="nav-item"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+                    <li><a href="classes_overview.html" class="nav-item active"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+                    <li><a href="Announcement.html" class="nav-item"><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+                    <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="login.html" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+            </div>
+        </aside>
+    
+        <main class="main-content">
+            <header class="header">
+                <h1 id="classNameHeader">Class Name</h1>
+                <div class="header-actions">
+                    <button id="addContentBtn" class="action-btn"><i class="fas fa-plus"></i> Add</button>
+                    <button id="removeContentBtn" class="action-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                    <button id="changeDesignBtn" class="action-btn"><i class="fas fa-palette"></i> Design</button>
+                </div>
+                <div class="user-profile">
+                    <img src="/images/user.png" alt="User Profile">
+                </div>
+            </header>
+
+            <!-- Dynamic Content Area -->
+            <section class="class-content-grid" id="classContentGrid">
+                <!-- Content cards will be loaded here dynamically -->
+                <p id="noContentMessage" class="hidden">No lessons or quizzes yet. Click 'Add' to start!</p>
+            </section>
+
+            <!-- Modals for Add Content and Change Design -->
+            <div id="addContentModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Add New Content</h2>
+                    <form id="addContentForm">
+                        <label for="contentType">Type:</label>
+                        <select id="contentType" name="contentType">
+                            <option value="lesson">Lesson</option>
+                            <option value="quiz">Quiz</option>
+                            <option value="project">Project</option>
+                        </select>
+                        <label for="contentTitle">Title:</label>
+                        <input type="text" id="contentTitle" placeholder="e.g., Week 1: Defining Art" required>
+                        <label for="contentDate">Date (Optional):</label>
+                        <input type="date" id="contentDate">
+                        <label for="contentImage">Image (Optional):</label>
+                        <input type="file" id="contentImage" accept="image/*">
+                        <button type="submit">Save Content</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="changeDesignModal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Change Class Design</h2>
+                    <div class="design-options">
+                        <label>Background Color:</label>
+                        <input type="color" id="bgColorPicker" value="#FFE6A4">
+                        <label>Card Color:</label>
+                        <input type="color" id="cardColorPicker" value="#8B0000">
+                        <button id="applyDesignBtn">Apply Design</button>
+                    </div>
+                </div>
+            </div>
+<!-- Members Modal -->
+<div id="membersModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Class Members</h2>
+        <ul id="studentEmails"></ul>
+    </div>
+</div>
+
+        </main>
+    </div>
+
+    <script>
+        let currentClassSubject = ''; // Global variable to store the subject of the currently viewed class
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentClassSubject = decodeURIComponent(urlParams.get('subject') || 'Unknown Class');
+
+            document.getElementById('classDetailsTitle').textContent = currentClassSubject;
+            document.getElementById('classNameHeader').textContent = currentClassSubject;
+
+            loadClassContent(currentClassSubject); // Load existing content for this class
+
+            // Modal elements
+            const addContentModal = document.getElementById('addContentModal');
+            const changeDesignModal = document.getElementById('changeDesignModal');
+            const closeButtons = document.querySelectorAll('.modal .close-button');
+
+            document.getElementById('addContentBtn').addEventListener('click', () => addContentModal.classList.remove('hidden'));
+            document.getElementById('changeDesignBtn').addEventListener('click', () => {
+                // Load current design settings into color pickers
+                const classDesign = JSON.parse(localStorage.getItem(`classDesign_${currentClassSubject}`)) || {};
+                document.getElementById('bgColorPicker').value = classDesign.bgColor || '#FFE6A4';
+                document.getElementById('cardColorPicker').value = classDesign.cardColor || '#8B0000';
+                changeDesignModal.classList.remove('hidden');
+            });
+            closeButtons.forEach(btn => btn.addEventListener('click', (e) => e.target.closest('.modal').classList.add('hidden')));
+
+
+            // Add Content Form Submission
+            document.getElementById('addContentForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const type = document.getElementById('contentType').value;
+                const title = document.getElementById('contentTitle').value;
+                const date = document.getElementById('contentDate').value;
+                // For image, you would upload it to a server and save the URL.
+                // For this example, we'll just store basic info.
+
+                if (!title) {
+                    alert('Content title is required.');
+                    return;
+                }
+
+                const newContent = {
+                    id: Date.now(), // Unique ID
+                    type: type,
+                    title: title,
+                    date: date,
+                    // img: 'placeholder.jpg' // Placeholder for image
+                };
+
+                saveContentToLocalStorage(currentClassSubject, newContent);
+                addContentModal.classList.add('hidden');
+                this.reset();
+                loadClassContent(currentClassSubject); // Reload content to show new item
+            });
+
+            // Remove Content Button (Logic will be applied to dynamically created cards)
+            let removeMode = false;
+            document.getElementById('removeContentBtn').addEventListener('click', function() {
+                removeMode = !removeMode; // Toggle remove mode
+                this.classList.toggle('active', removeMode);
+                const contentCards = document.querySelectorAll('#classContentGrid .content-card');
+                contentCards.forEach(card => {
+                    if (removeMode) {
+                        card.classList.add('remove-mode');
+                        // Add a delete icon overlay
+                        if (!card.querySelector('.delete-icon')) {
+                            const deleteIcon = document.createElement('i');
+                            deleteIcon.classList.add('fas', 'fa-times-circle', 'delete-icon');
+                            card.appendChild(deleteIcon);
+                            deleteIcon.addEventListener('click', function(e) {
+                                e.stopPropagation(); // Prevent card click
+                                deleteContent(currentClassSubject, card.dataset.contentId);
+                            });
+                        }
+                    } else {
+                        card.classList.remove('remove-mode');
+                        const deleteIcon = card.querySelector('.delete-icon');
+                        if (deleteIcon) deleteIcon.remove();
+                    }
+                });
+            });
+
+            // Apply Design Button
+            document.getElementById('applyDesignBtn').addEventListener('click', function() {
+                const bgColor = document.getElementById('bgColorPicker').value;
+                const cardColor = document.getElementById('cardColorPicker').value;
+                
+                const classDesign = { bgColor, cardColor };
+                localStorage.setItem(`classDesign_${currentClassSubject}`, JSON.stringify(classDesign));
+                
+                applyClassDesign(currentClassSubject); // Apply to current page
+                changeDesignModal.classList.add('hidden');
+            });
+            
+            // Initial design application on load
+            applyClassDesign(currentClassSubject);
+
+        }); // DOMContentLoaded end
+
+        function loadClassContent(subject) {
+            const classContentGrid = document.getElementById('classContentGrid');
+            const noContentMessage = document.getElementById('noContentMessage');
+            const classContents = JSON.parse(localStorage.getItem(`classContents_${subject}`)) || [];
+            classContentGrid.innerHTML = ''; // Clear existing content
+
+            if (classContents.length === 0) {
+                noContentMessage.classList.remove('hidden');
+                classContentGrid.appendChild(noContentMessage); // Ensure message is in the grid
+            } else {
+                noContentMessage.classList.add('hidden');
+                classContents.forEach(content => {
+                    const contentCard = document.createElement('div');
+                    contentCard.classList.add('content-card');
+                    contentCard.classList.add(content.type); // Add type class for specific styling
+                    contentCard.dataset.contentId = content.id; // Store ID for removal
+
+                    let dateDisplay = content.date ? `<p class="content-date">DATE: ${content.date}</p>` : '';
+                    let imageHtml = ''; // For images, you'd handle file paths/uploads
+                    if (content.type === 'lesson') {
+                        // Placeholder image for lessons
+                        imageHtml = '<img src="lesson-placeholder.jpg" alt="Lesson Image" class="content-image">';
+                    } else if (content.type === 'quiz') {
+                         // Placeholder image for quizzes
+                        imageHtml = '<img src="quiz-placeholder.jpg" alt="Quiz Image" class="content-image">';
+                    } else if (content.type === 'project') {
+                         // Placeholder image for projects
+                        imageHtml = '<img src="project-placeholder.jpg" alt="Project Image" class="content-image">';
+                    }
+
+
+                    contentCard.innerHTML = `
+                        ${imageHtml}
+                        <h3 class="content-title">${content.title}</h3>
+                        ${dateDisplay}
+                    `;
+                    classContentGrid.appendChild(contentCard);
+                });
+            }
+        }
+
+        function saveContentToLocalStorage(subject, content) {
+            let classContents = JSON.parse(localStorage.getItem(`classContents_${subject}`)) || [];
+            classContents.push(content);
+            localStorage.setItem(`classContents_${subject}`, JSON.stringify(classContents));
+        }
+
+        function deleteContent(subject, contentId) {
+            let classContents = JSON.parse(localStorage.getItem(`classContents_${subject}`)) || [];
+            classContents = classContents.filter(content => content.id != contentId); // Filter out the deleted item
+            localStorage.setItem(`classContents_${subject}`, JSON.stringify(classContents));
+            loadClassContent(subject); // Reload content to reflect deletion
+        }
+
+        function applyClassDesign(subject) {
+            const classDesign = JSON.parse(localStorage.getItem(`classDesign_${subject}`)) || {};
+            const mainContent = document.querySelector('.main-content');
+            const contentCards = document.querySelectorAll('.class-content-grid .content-card'); // Select existing cards too
+
+            // Apply background color
+            if (classDesign.bgColor) {
+                mainContent.style.backgroundColor = classDesign.bgColor;
+            } else { // Default
+                mainContent.style.backgroundColor = '#FFE6A4';
+            }
+
+            // Apply card color
+            if (classDesign.cardColor) {
+                contentCards.forEach(card => {
+                    card.style.backgroundColor = classDesign.cardColor;
+                });
+                // Also set default for new cards
+                document.documentElement.style.setProperty('--card-bg-color', classDesign.cardColor);
+            } else { // Default
+                contentCards.forEach(card => {
+                    card.style.backgroundColor = '#8B0000';
+                });
+                document.documentElement.style.setProperty('--card-bg-color', '#8B0000');
+            }
+        }
+        const classMembers = JSON.parse(localStorage.getItem(`classMembers_${currentClassSubject}`)) || [
+    { email: "student1@example.com" },
+    { email: "student2@example.com" },
+    { email: "student3@example.com" }
+];
+
+// Elements
+const membersModal = document.getElementById('membersModal');
+const openMembersBtn = document.getElementById('openMembersModal');
+const closeMembersBtn = membersModal.querySelector('.close-button');
+const studentEmailsList = document.getElementById('studentEmails');
+
+// Render members in modal
+function renderMembers() {
+    studentEmailsList.innerHTML = '';
+    if (classMembers.length === 0) {
+        studentEmailsList.innerHTML = '<li>No students enrolled yet.</li>';
+    } else {
+        classMembers.forEach(student => {
+            const li = document.createElement('li');
+            li.textContent = student.email;
+            studentEmailsList.appendChild(li);
+        });
+    }
+}
+
+// Open modal on logo click
+openMembersBtn.addEventListener('click', () => {
+    renderMembers();
+    membersModal.classList.remove('hidden');
+});
+
+// Close modal
+closeMembersBtn.addEventListener('click', () => {
+    membersModal.classList.add('hidden');
+});
+    </script>
+</body>
+</html>

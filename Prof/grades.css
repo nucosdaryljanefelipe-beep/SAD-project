@@ -1,0 +1,340 @@
+.body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #F8EDAD;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    min-width: 1480px;
+    min-height: 1064px;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    width: 1440px;
+    height: 1024px;
+    background-color: #F8EDAD;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: 0 auto;
+}
+.sidebar {
+  width: 220px;
+  background: #fde2a3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.03);
+  padding-top: 20px;
+  transition: width 0.3s;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+nav ul li {
+  width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #8B0000;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar .logo img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: white;
+    border: 3px solid #FFD700;
+    object-fit: cover;
+}
+
+.sidebar .navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .navigation li {
+    margin-bottom: 12px;
+}
+
+.sidebar .navigation .nav-item {
+    display: block;
+    padding: 14px 18px;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.05em;
+}
+
+.sidebar .navigation .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateX(5px);
+}
+
+.sidebar .navigation .nav-item.active {
+    background-color: #FFD700;
+    color: #8B0000;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon styling */
+.sidebar .navigation .nav-item .icon {
+    font-size: 1.3em;
+    width: 25px;
+    text-align: center;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+.sidebar .logout .nav-item .icon {
+    font-size: 1.3em;
+    width: 25px;
+    text-align: center;
+}
+
+.logout {
+  margin-top: auto;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.logout a {
+  display: flex;
+  align-items: center;
+  color: #a24b00;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: background 0.2s;
+}
+
+.logout a:hover {
+  background: rgba(255, 213, 128, 0.5);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+main {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.grades-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.grades-header h2 {
+  color: #d22d2d;
+  margin: 0;
+}
+
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 30px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.course-card {
+  background: #d22d2d;
+  color: #fff;
+  border-radius: 14px;
+  padding: 24px 18px 12px 18px;
+  box-shadow: 0 3px 12px rgba(210,45,45,0.08);
+  position: relative;
+  min-width: 160px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.course-card:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(210,45,45,0.18);
+  background: linear-gradient(120deg, #d22d2d 80%, #a24b00 100%);
+  backdrop-filter: blur(3px);
+}
+
+.course-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.course-code, .course-time {
+  font-size: 14px;
+  margin-top: 7px;
+}
+.arrow-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(255,255,255,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #d22d2d;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.2s;
+}
+.arrow-btn:hover {
+  background: #fff;
+  color: #a24b00;
+}
+
+.grades-table {
+  background: #d22d2d;
+  border-radius: 14px;
+  margin-top: 40px;
+  padding: 22px;
+  box-shadow: 0 3px 12px rgba(210,45,45,0.08);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grades-table-header {
+  display: grid;
+ grid-template-columns: repeat(7, minmax(110px, 1fr));
+  gap: 8px;
+  align-items: center;
+
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 15px;
+  gap: 8px;
+}
+
+.grades-table-row {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.grades-table-row input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+
+.grades-table-row input:focus {
+  box-shadow: 0 2px 16px rgba(210,45,45,0.2);
+}
+
+.back-btn {
+  background: rgba(210,45,45,0.12);
+  color: #d22d2d;
+  border: none;
+  border-radius: 18px;
+  padding: 8px 18px;
+  font-size: 17px;
+  font-weight: 600;
+  margin-right: 24px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  background: #d22d2d;
+  color: #fff;
+}
+ 
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+/*pang responsive siya*/
+@media (max-width: 1100px) {
+  .grades-table-header,
+  .grades-table-row {
+    grid-template-columns: repeat(7, minmax(80px, 1fr));
+  }
+}
+@media (max-width: 700px) {
+  .grades-table-header,
+  .grades-table-row {
+    grid-template-columns: repeat(7, minmax(60px, 1fr));
+    gap: 6px;
+    font-size: 13px;
+  }
+}

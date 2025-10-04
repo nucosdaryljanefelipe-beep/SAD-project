@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class Members</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="class_members.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="/images/qculogo.png" alt="Logo" />
+      </div>
+      <nav class="navigation">
+        <ul>
+                  <li><a href="dashboard.html" class="nav-item"><i class="fas fa-tachometer-alt icon"></i> Dashboard</a></li>
+                    <li><a href="create_class.html" class="nav-item"><i class="fas fa-plus-circle icon"></i> Create</a></li>
+                    <li><a href="classes_overview.html" class="nav-item active"><i class="fas fa-graduation-cap icon"></i> Class</a></li>
+                    <li><a href="Announcement.html" class="nav-item"><i class="fas fa-bullhorn icon"></i> Announcement</a></li>
+                    <li><a href="grades_overview.html" class="nav-item"><i class="fas fa-chart-bar icon"></i> Grades</a></li>
+                </ul>
+            </nav>
+            <div class="logout">
+                <a href="login.html" class="nav-item"><i class="fas fa-sign-out-alt icon"></i> Log Out</a>
+          </div>
+    </aside>
+    <main class="main-content">
+  <div class="personIcon-header">
+  <div class="personIcon-path">
+    <span>Class / Inside / Members</span>
+  </div>
+  <div class="personIcon-right">
+    <span class="personIcon-count">7</span>
+    <img class="personIcon-avatar" src="/images/user.png" alt="User Avatar">
+  </div>
+</div>
+
+      <section class="members-section">
+        <div class="members-card">
+          <h2 class="members-title">Class Member</h2>
+          <div class="members-searchbar">
+            <input type="text" placeholder="Name" id="searchInput">
+            <span class="search-icon">⌕</span>
+          </div>
+          <div class="members-list-wrapper">
+            <table class="members-table" id="membersTable">
+              <tbody>
+
+                <tr>
+                  <td><img src="/images/cat.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Nabuntaran, Justin</td>
+                  <td class="member-email">justin.nabuntaran@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/posa.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Cruz, Katherine</td>
+                  <td class="member-email">cruzkatherine@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/cat.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Dela Cruz, Juan</td>
+                  <td class="member-email">delacruzjuan@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/posa.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Santos, Pedro</td>
+                  <td class="member-email">pedrosantos@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/cat.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Diaz, Choco</td>
+                  <td class="member-email">diazchoco123@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/posa.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Garcia, Maria</td>
+                  <td class="member-email">maria.garcia89@gmail.com</td>
+                </tr>
+                <tr>
+                  <td><img src="/images/posa.jpg" alt="Avatar" class="member-avatar"></td>
+                  <td class="member-name">Reyes, Antony</td>
+                  <td class="member-email">reyesantony@gmail.com</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="class_members.js"></script>
+</body>
+</html>
