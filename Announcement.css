@@ -1,0 +1,138 @@
+body {
+    background-color: #F8EDAD;
+}
+.Logo {
+    display: flex;
+    width: 150px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+.ButtonBox {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 70px;
+    justify-content: left;
+    
+}
+
+.Dash, .Depa, .Anno, .Facu, .logout{
+    display: inline-block;
+    width: 150px;
+    background-color: transparent;
+    border-width: 0cap;
+    font-size: 20px ;
+    color: #ED7C30;
+    font-weight: bold;
+    
+}
+
+.logout {
+display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 100px;
+    justify-content: left;
+}
+
+.Dash:hover, .Depa:hover, .Anno:hover, .Facu:hover, .logout:hover{
+    font-size: 25px;
+    color: #de253d;
+}
+
+.BTN {
+    display:inline-block;
+}
+
+h1 {
+    margin-left: 100px;
+color: #ED7C30;
+font-size: 35px;
+
+}
+.others {
+    background-color: #de253d;
+    display:inline-block;
+    font-size: 20px;
+    margin-left: 100px;
+    width: 1150px;
+    height: 620px;
+    border-radius: 10px;
+}
+
+.Celvi {
+    display: flex; 
+}
+
+.container {
+ background-color: #de253d;
+    display:inline-block;
+    font-size: 20px;
+    margin-left: 100px;
+    width: 1150px;
+    height: 620px;
+    border-radius: 10px;
+    gap: 50px;
+}
+
+.course {
+    
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.announce-box {
+    display: block;
+    width: 1050px;
+    height: 350px;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #ED7C30;
+    resize: vertical;
+}
+
+.file-upload {
+    display: block;
+    margin-left: 50px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ED7C30;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    border: 2px solid #ED7C30;
+    background-color: #F8EDAD;
+}
+
+.send-student, .send-teacher, .send-all {
+    display: inline-block;
+    width: 150px;
+    background-color: black;
+    border-width: 0cap;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 40px;
+    border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.send-student:hover, .send-teacher:hover, .send-all:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.send-student:focus, .send-teacher:focus, .send-all:focus,
+.announce-box:focus, .file-upload:focus {
+    outline: 2px solid #ED7C30;
+    outline-offset: 2px;
+}

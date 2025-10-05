@@ -1,0 +1,129 @@
+body {
+    background-color: #F8EDAD;
+}
+.Logo {
+    display: flex;
+    width: 150px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+.ButtonBox {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 70px;
+    justify-content: left;
+    
+}
+
+.Dash, .Depa, .Anno, .Facu, .logout{
+    display: inline-block;
+    width: 150px;
+    background-color: transparent;
+    border-width: 0cap;
+    font-size: 20px ;
+    color: #ED7C30;
+    font-weight: bold;
+    
+}
+
+.logout {
+display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 100px;
+    justify-content: left;
+}
+
+.Dash:hover, .Depa:hover, .Anno:hover, .Facu:hover, .logout:hover{
+    font-size: 25px;
+    color: #de253d;
+}
+.CSBS:hover, .CSE:hover, .CSS:hover, .add:hover{
+    background-color: black;
+    color: white;
+}
+
+.BTN {
+    display:inline-block;
+}
+
+h1 {
+    margin-left: 100px;
+color: #ED7C30;
+font-size: 35px;
+
+}
+.others {
+    background-color: #de253d;
+    display:inline-block;
+    font-size: 20px;
+    margin-left: 100px;
+    width: 1150px;
+    height: 620px;
+    border-radius: 10px;
+}
+
+.Celvi {
+    display: flex; 
+}
+
+.container {
+    background-color: #de253d;
+    display:inline-block;
+    font-size: 20px;
+    margin-left: 100px;
+    width: 1150px;
+    height: 620px;
+    border-radius: 10px;
+    gap: 50px;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.CSS, .CSE, .CSBS, .add {
+    display:block;
+    width:300px;
+    font-size: 20px;
+    margin-left: 40px;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+}
+
+.Sec-Box {
+    display: block;
+    width: 300px;
+    margin-top: 100px;
+}
+
+.Program-Box {
+    display: flex;
+
+}
+
+.Panel {
+    background-color: #f2f2f2;
+    width: 500px;
+    height: 450px;
+    margin-left: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    
+}
+
+.Panel li {
+    list-style: none;
+    font-size: 19px;
+    margin-top: 5px;
+}

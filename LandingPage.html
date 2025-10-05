@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="LandingPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet">
+    <title>Welcome to QCU</title>
+</head>
+<body>
+    <div class="main-layout">
+       
+        <div class="left-side">
+            <div class="fixed-logo-title">
+                <img src="QCU_Logo.png" class="logo">
+                <p class="Up">QUEZON CITY UNIVERSITY</p>
+                <p class="Down">Welcome to QCU</p>
+            </div>
+            <div class="ButtonBox">
+                <button>Student</button>
+                <button>Educator</button>
+                <button onclick="window.location.href='DashBoard.html'">Admin</button>
+            </div>
+        </div>
+  
+        <div class="right-side">
+            <div class="carousel transparent-carousel">
+                <div class="carousel-slide" id="slide1">
+                    <p class="carousel-title">Vision</p>
+                    <p class="carousel-text">To be recognized as a number one<br>local university for employable graduates</p>
+                </div>
+                <div class="carousel-slide" id="slide2" style="display:none;">
+                    <p class="carousel-title">Mission</p>
+                    <p class="carousel-text">To provide a comprehensive education<br>that enhances the lives of QCU students<br>for nation building and as a world citizen</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        setInterval(() => {
+            slides[current].style.display = 'none';
+            current = (current + 1) % slides.length;
+            slides[current].style.display = 'block';
+        }, 3000);
+    </script>
+</body>
+</html>

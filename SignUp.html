@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="Sign.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Log In</h2>
+        <p>Enter your account details</p>
+
+    <div class="input-box">
+        <label>Username</label>
+        <input type="text" class="email" placeholder="Enter username">
+    </div>
+
+    <div class="input-box">
+        <label>Password</label>
+        <input type="text" class="pass" placeholder="Enter password">
+        </div>
+
+    <button onclick="log" class="button">LOG IN</button>
+    </div>
+
+    <div class="welcome">
+        <h1>Welcome to<br>Admin Portal</h1>
+        <img src="QCU_Logo.png" alt="Welcome Image" class="welcome-img">
+    </div>
+
+    <script>
+        const username = "Roven";
+        const password = "123";
+        
+        function log() {
+
+        const input_user = document.querySelector('.email').value;
+        const input_password = document.querySelector('.pass').value;
+
+
+        if (input_username === username || input_password === password){
+            alert('Welcome Roven')
+        } else {
+            alert('Wrong input, Please Try again.')
+            window.location.href="DashBoard.html";
+        }
+    }
+    </script>
+</body>
+</html>

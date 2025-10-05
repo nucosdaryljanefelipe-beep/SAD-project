@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="department1.css">
+    <title>Department</title>
+</head>
+<body>
+    <div class="Celvi">
+        <div class="BTN">
+            <img src="QCU_Logo copy.png" class="Logo" onclick="window.location.href='DashBoard.html'">
+            <div class="ButtonBox">
+                <button class="Dash" onclick="window.location.href='DashBoard.html'">Dashboard</button>
+                <button class="Depa" onclick="window.location.href='department1.html'">Departments</button>
+                <button class="Anno" onclick="window.location.href='Announcement.html'">Announcement</button>
+                <button class="Facu" onclick="window.location.href='FacultyMem.html'">Faculty Members</button>
+            </div>
+            <button class="logout" onclick="window.location.href='SignUp.html'">Log Out</button>
+        </div>
+
+        <div>
+            <h1> Good Day! Admin!</h1>
+            <div class="container">
+                <div class="Program-Box">
+                    <div class="course" id="courseButtons">
+                        <button class="CSS">Computer Studies</button>
+                        <button class="CSE">College of Engineering</button>
+                        <button class="CSBS">College of Business Studies</button>
+                        <button class="add" id="addBtn">&#8853; Add more</button>
+                    </div>
+
+                    <div class="Sec-Box">
+                        <div class="Panel" id="panelContent">
+                            <!-- Default Content -->
+                            <h3>INFORMATION TECHNOLOGY</h3>
+                            <li>SBIT-1D</li>
+                            <li>SBIT-2D</li>
+                            <li>SBIT-3D</li>
+                    
+                            <h3>INFORMATION SYSTEM</h3>
+                            <li>SBIS-1D</li>
+                            <li>SBIS-2D</li>
+                            <li>SBIS-3D</li>
+                    
+                            <h3>COMPUTER SCIENCE</h3>
+                            <li>SBCS-1D</li>
+                            <li>SBCS-2D</li>
+                            <li>SBCS-3D</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    
+    const data = {
+        "Computer Studies": `
+            <h3>INFORMATION TECHNOLOGY</h3>
+            <li>SBIT-1D</li>
+            <li>SBIT-2D</li>
+            <li>SBIT-3D</li>
+
+            <h3>INFORMATION SYSTEM</h3>
+            <li>SBIS-1D</li>
+            <li>SBIS-2D</li>
+            <li>SBIS-3D</li>
+
+            <h3>COMPUTER SCIENCE</h3>
+            <li>SBCS-1D</li>
+            <li>SBCS-2D</li>
+            <li>SBCS-3D</li>
+        `,
+        "College of Engineering": `
+            <h3>CIVIL ENGINEERING</h3>
+            <li>BSCE-1D</li>
+            <li>BSCE-2D</li>
+            <li>BSCE-3D</li>
+
+            <h3>ELECTRICAL ENGINEERING</h3>
+            <li>BSEE-1D</li>
+            <li>BSEE-2D</li>
+            <li>BSEE-3D</li>
+        `,
+        "College of Business Studies": `
+            <h3>BUSINESS ADMINISTRATION</h3>
+            <li>SBBA-1D</li>
+            <li>SBBA-2D</li>
+            <li>SBBA-3D</li>
+
+            <h3>ACCOUNTANCY</h3>
+            <li>SBAC-1D</li>
+            <li>SBAC-2D</li>
+            <li>SBAC-3D</li>
+        `
+    };
+
+    document.querySelector(".CSS").addEventListener("click", () => {
+        document.getElementById("panelContent").innerHTML = data["Computer Studies"];
+    });
+
+    document.querySelector(".CSE").addEventListener("click", () => {
+        document.getElementById("panelContent").innerHTML = data["College of Engineering"];
+    });
+
+    document.querySelector(".CSBS").addEventListener("click", () => {
+        document.getElementById("panelContent").innerHTML = data["College of Business Studies"];
+    });
+
+    document.getElementById("addBtn").addEventListener("click", () => {
+        const newName = prompt("Enter the name of the new College/Department:");
+        if (newName && newName.trim() !== "") {
+            const courseButtons = document.getElementById("courseButtons");
+            
+            const newBtn = document.createElement("button");
+            newBtn.textContent = newName;
+            newBtn.classList.add("CSS"); 
+
+            newBtn.addEventListener("click", () => {
+                document.getElementById("panelContent").innerHTML = `
+                    <h3>${newName}</h3>
+                    <p>No courses added yet.</p>
+                `;
+            });
+
+            courseButtons.insertBefore(newBtn, document.getElementById("addBtn"));
+
+            data[newName] = `<h3>${newName}</h3><p>No courses added yet.</p>`;
+        }
+    });
+</script>
+</body>
+</html>

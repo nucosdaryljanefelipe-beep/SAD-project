@@ -1,0 +1,147 @@
+body {
+    position: relative;
+    background: linear-gradient(
+        to bottom,
+        #F8EDAD 0%,
+        #CA1C1D 100%
+    );
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'IM Fell DW Pica SC', serif;
+    overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("Qcu.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+}
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.fixed-logo-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.Up {
+    color: #ED7C30;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    letter-spacing: 2px;
+    font-family: 'IM Fell DW Pica SC', serif;
+    text-align: center;
+}
+
+.Down {
+    color: #ED7C30;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-family: 'IM Fell English', serif;
+    letter-spacing: 5px;
+    text-align: center;
+}
+
+.ButtonBox {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+button {
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    background: #fff;
+    color: #ED7C30;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover {
+    background-color: #ED7C30;
+    color: #fff;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transparent-carousel {
+    width: 500px;
+    min-height: 250px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-title {
+    font-size: 2.5rem;
+    color: #ED7C30;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'IM Fell DW Pica SC', serif;
+}
+
+.carousel-text {
+    font-size: 1.5rem;
+    color: #fff;
+    font-family: 'IM Fell English', serif;
+}

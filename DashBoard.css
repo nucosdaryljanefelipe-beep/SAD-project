@@ -1,0 +1,139 @@
+body {
+    background-color: #F8EDAD;
+}
+.Logo {
+    display: flex;
+    width: 150px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+.ButtonBox {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 70px;
+    justify-content: left;
+    
+}
+
+button{
+    display: inline-block;
+    width: 150px;
+    background-color: transparent;
+    border-width: 0cap;
+    font-size: 20px ;
+    color: #ED7C30;
+    font-weight: bold;
+    
+}
+
+.logout {
+display: flex;
+    flex-direction: column;
+    gap: 60px;
+    min-width: 150px;
+    margin-left: 61px;
+    margin-top: 100px;
+    justify-content: left;
+}
+
+button:hover{
+    font-size: 25px;
+    color: #de253d;
+}
+
+.BTN {
+    display:inline-block;
+}
+h1 {
+    margin-left: 100px;
+color: #ED7C30;
+font-size: 35px;
+
+}
+.others {
+    background-color: #de253d;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 100px;
+    width: 1100px;
+    height: 570px;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+p1 {
+    display:block;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+p2, p3, p4 {
+    display:inline-block;
+    margin-top: 30px;
+    margin-left: 15px;
+    font-size: 30px;
+}
+
+p2 {
+    margin-right: 15px;
+}
+
+p3 {
+    margin-right: 15px;
+}
+
+p4 {
+    margin-right: 6px;
+}
+
+input {
+    padding-top: 30px;
+    width: 55rem;
+    font-size: auto;
+
+}
+
+input[type="textbox"], input {
+    padding: 10px 15px;
+    width: 90%;
+    font-size: 22px;
+    border-radius: 8px;
+    border: 2px solid #ED7C30;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+p5 {
+    display: block;
+    margin-top: 170px;
+    margin-left: 15px;
+    font-size: 30px;
+}
+.Celvi {
+    display: flex; 
+}
+
+.label {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.section-label {
+    margin-top: 20px;
+    display: block;
+}
+
+.teacher-label {
+    margin-top: 60px;
+    font-size: 30px;
+    display: block;
+}
+

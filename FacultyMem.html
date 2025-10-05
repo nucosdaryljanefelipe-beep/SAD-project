@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="Faculty.css" />
+  <title>Faculty Members</title>
+</head>
+<body>
+  <div class="Celvi">
+    <div class="BTN">
+      <img src="QCU_Logo copy.png" class="Logo" onclick="window.location.href='DashBoard.html'">
+      <div class="ButtonBox">
+        <button class="Dash" onclick="window.location.href='DashBoard.html'">Dashboard</button>
+        <button class="Depa" onclick="window.location.href='department1.html'">Departments</button>
+        <button class="Anno" onclick="window.location.href='Announcement.html'">Announcement</button>
+        <button class="Facu" onclick="window.location.href='FacultyMem.html'">Faculty Members</button>
+      </div>
+      <button class="logout" onclick="window.location.href='SignUp.html'">Log Out</button>
+    </div>
+
+    <div>
+      <h1>List of Faculty</h1>
+      <div class="container">
+        <select class="college">
+          <option value="Computer Studies">Computer Studies</option>
+          <option value="Accountancy">Accountancy</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Business Administration">Business Administration</option>
+        </select>
+
+        <div class="box-content">
+          <div class="teacher-box"></div>
+
+          <div class="Teacher-Description">
+            <div class="pic-name">
+              <img src="cutie.png" alt="Teacher" class="profile">
+              <label class="name">Name: </label>
+              <button class="Edit-button">✏️ Edit</button>
+            </div>
+
+            <div class="Class-Sched">
+              <div class="column-labels">
+                <label class="Section">Section</label>
+                <input type="text" class="SecBox" readonly>
+                <input type="text" class="SecBox" readonly>
+                <input type="text" class="SecBox" readonly>
+              </div>
+              <div class="column-labels">
+                <label class="Time">Time</label>
+                <input type="text" class="TimeBox" readonly>
+                <input type="text" class="TimeBox" readonly>
+                <input type="text" class="TimeBox" readonly>
+              </div>
+              <div class="column-labels">
+                <label class="Subject">Subject</label>
+                <input type="text" class="SubjectBox" readonly>
+                <input type="text" class="SubjectBox" readonly>
+                <input type="text" class="SubjectBox" readonly>
+              </div>
+            </div>
+            <button class="Move-button">➡️ Move</button>
+            <button class="Remove-button">🗑️ Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const teacherBox = document.querySelector(".teacher-box");
+        const teacherPic = document.querySelector(".Teacher-Description .profile");
+        const teacherNameLabel = document.querySelector(".name");
+        const editButton = document.querySelector(".Edit-button");
+        const moveButton = document.querySelector(".Move-button");
+        const removeButton = document.querySelector(".Remove-button");
+        const sectionBoxes = document.querySelectorAll(".SecBox");
+        const timeBoxes = document.querySelectorAll(".TimeBox");
+        const subjectBoxes = document.querySelectorAll(".SubjectBox");
+        const collegeSelect = document.querySelector(".college");
+
+        // Faculty data by department
+        const facultyData = {
+          "Computer Studies": [
+            { name: "John Doe", role: "Professor", img: "cutie.png" },
+            { name: "John Deez", role: "Professor", img: "cutie.png" },
+            { name: "Day Doe", role: "Professor", img: "cutie.png" },
+            { name: "John Da", role: "Professor", img: "cutie.png" }
+          ],
+          "Accountancy": [
+            { name: "Marie Cruz", role: "Lecturer", img: "cutie.png" },
+            { name: "Carlos Tan", role: "Professor", img: "cutie.png" },
+            { name: "Anna Lim", role: "Assistant Prof.", img: "cutie.png" }
+          ],
+          "Engineering": [
+            { name: "Engr. Santos", role: "Professor", img: "cutie.png" },
+            { name: "Engr. Dela Cruz", role: "Professor", img: "cutie.png" },
+            { name: "Engr. Navarro", role: "Instructor", img: "cutie.png" }
+          ],
+          "Business Administration": [
+            { name: "Mr. Mendoza", role: "Lecturer", img: "cutie.png" },
+            { name: "Ms. Torres", role: "Professor", img: "cutie.png" },
+            { name: "Dr. Reyes", role: "Dean", img: "cutie.png" }
+          ]
+        };
+
+        let selectedDept = "Computer Studies";
+        let selectedTeacher = null;
+
+        // Function to render teacher cards
+        function renderFaculty(dept) {
+          teacherBox.innerHTML = "";
+          facultyData[dept].forEach((teacher) => {
+            const card = document.createElement("div");
+            card.className = "teacher-card";
+            card.innerHTML = `
+              <img src="${teacher.img}" alt="${teacher.name}" class="profile">
+              <h3>${teacher.name}</h3>
+              <p>${teacher.role}</p>
+            `;
+            teacherBox.appendChild(card);
+          });
+
+          const addCard = document.createElement("div");
+          addCard.className = "teacher-card";
+          addCard.innerHTML = `
+            <img src="add.jpg" class="profile">
+            <h3>ADD MORE</h3>
+          `;
+          teacherBox.appendChild(addCard);
+        }
+
+        // Initial load
+        renderFaculty(selectedDept);
+
+        // Change faculty when department changes
+        collegeSelect.addEventListener("change", (e) => {
+          selectedDept = e.target.value;
+          renderFaculty(selectedDept);
+        });
+
+        // Handle teacher card clicks
+        teacherBox.addEventListener("click", (e) => {
+          const card = e.target.closest(".teacher-card");
+          if (!card) return;
+          const nameText = card.querySelector("h3")?.textContent;
+
+          // Add More card
+          if (nameText === "ADD MORE") {
+            const name = prompt("Enter teacher's name:");
+            if (!name) return;
+
+            const role = "Professor";
+            const imgInput = document.createElement("input");
+            imgInput.type = "file";
+            imgInput.accept = "image/*";
+            imgInput.onchange = (event) => {
+              const file = event.target.files[0];
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                facultyData[selectedDept].push({
+                  name,
+                  role,
+                  img: e.target.result
+                });
+                renderFaculty(selectedDept);
+              };
+              reader.readAsDataURL(file);
+            };
+            imgInput.click();
+            return;
+          }
+
+          // Normal teacher card
+          selectedTeacher = facultyData[selectedDept].find(t => t.name === nameText);
+          teacherPic.src = selectedTeacher.img;
+          teacherNameLabel.textContent = "Name: " + selectedTeacher.name + " (" + selectedTeacher.role + ")";
+        });
+
+        // Edit button functionality
+        let isEditing = false;
+        editButton.addEventListener("click", () => {
+          isEditing = !isEditing;
+          if (isEditing) {
+            editButton.textContent = "💾 Save";
+            [sectionBoxes, timeBoxes, subjectBoxes].forEach(group => {
+              group.forEach(box => {
+                box.removeAttribute("readonly");
+                box.style.backgroundColor = "#fff5cc";
+              });
+            });
+          } else {
+            editButton.textContent = "✏️ Edit";
+            [sectionBoxes, timeBoxes, subjectBoxes].forEach(group => {
+              group.forEach(box => {
+                box.setAttribute("readonly", true);
+                box.style.backgroundColor = "#f29325";
+              });
+            });
+          }
+        });
+
+        // MOVE button functionality
+        moveButton.addEventListener("click", () => {
+          if (!selectedTeacher) {
+            alert("Select a teacher first.");
+            return;
+          }
+          const newDept = prompt("Move to which department? (Computer Studies, Accountancy, Engineering, Business Administration)");
+          if (!newDept || !facultyData[newDept]) {
+            alert("Invalid department.");
+            return;
+          }
+          // Remove from current and move to new
+          facultyData[selectedDept] = facultyData[selectedDept].filter(t => t.name !== selectedTeacher.name);
+          facultyData[newDept].push(selectedTeacher);
+          selectedTeacher = null;
+          renderFaculty(selectedDept);
+          alert("Teacher moved to " + newDept);
+        });
+
+        // REMOVE button functionality
+        removeButton.addEventListener("click", () => {
+          if (!selectedTeacher) {
+            alert("Select a teacher first.");
+            return;
+          }
+          const confirmDelete = confirm("Are you sure you want to remove " + selectedTeacher.name + "?");
+          if (confirmDelete) {
+            facultyData[selectedDept] = facultyData[selectedDept].filter(t => t.name !== selectedTeacher.name);
+            selectedTeacher = null;
+            renderFaculty(selectedDept);
+            alert("Teacher removed.");
+          }
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>
